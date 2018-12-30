@@ -1,0 +1,50 @@
+﻿@model Online_Book_Store.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="margin-left:40px;">Book Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Bookname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bookname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Authorname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+    </dl>
+</div>
+<p style="margin-left:40px;">
+    
+    @Html.ActionLink("Download", "download", new { id = Model.BookId }) |    
+    @Html.ActionLink("Back to List", "Index")
+</p>

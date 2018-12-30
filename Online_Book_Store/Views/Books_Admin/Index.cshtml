@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Online_Book_Store.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<p>
+    @Html.ActionLink("Add New Book", "Create")
+</p>
+<br />
+
+@using (Html.BeginForm("Index", "Books_Admin", FormMethod.Post))
+{
+    <div style="float:right;">
+        Search by Book name:@Html.TextBox("searchStr")
+        Search by Author name:@Html.TextBox("author1")
+        <input type="submit" class="btn btn-primary" id="submit1" value="Filter" />
+    </div>
+
+}
+<table style="margin-top:50px;" class="table table-hover table-striped">
+    <thead>
+        <th>
+            @Html.ActionLink("Bookname", "Index", new { sort = ViewBag.bname })
+        </th>
+        <th>
+            @Html.ActionLink("Authorname", "Index", new { sort = ViewBag.author })
+        </th>
+        <th>
+            @Html.ActionLink("BookType", "Index", new { sort = ViewBag.type })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sort = ViewBag.price })
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bookname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Show User", "Index","UserInfoes")
+</div>

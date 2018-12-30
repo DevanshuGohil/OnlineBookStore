@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Online_Book_Store.Models.Book>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="mySpace">Let's Start </h3>
+
+@using (Html.BeginForm("Index", "Books_Customer", FormMethod.Post))
+{
+    <div style="float:right;">
+        Search by Book name:@Html.TextBox("searchStr")
+        Search by Author name:@Html.TextBox("author1")
+        <input type="submit" class="btn btn-primary" id="submit1" value="Filter" />
+    </div>
+   
+
+}
+<table style="margin-top:50px;" class="table table-striped table-hover">
+    <thead>
+        <th>
+            @Html.ActionLink("Bookname", "Index", new { sort = ViewBag.bname })
+        </th>
+        <th>
+            @Html.ActionLink("Authorname", "Index", new { sort = ViewBag.author })
+        </th>
+        <th>
+            @Html.ActionLink("BookType","Index", new { sort = ViewBag.type })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index", new { sort = ViewBag.price })
+        </th>
+        <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bookname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+               
+                @Html.ActionLink("Preview", "Details", new { id = item.BookId })
+              
+               
+            </td>
+        </tr>
+    }
+
+</table>
